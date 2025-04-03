@@ -1,3 +1,5 @@
+// swift-tools-version: 5.10
+
 import PackageDescription
 
 let package = Package(
@@ -16,7 +18,7 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "ZipyiOS",
-            url: "https://github.com/zipyinc/zipy-ios-binary/releases/download/0.0.1/ZipyiOS.xcframework.zip",
+            url: "https://github.com/zipyinc/zipy-iossdk-release-test/releases/download/0.0.1/ZipyiOS.xcframework.zip",
             checksum: "7582cbf241687e0fc968d980afc198dcf42e97894a4a98c32f277f7609e8aa30"
         )
     ]
