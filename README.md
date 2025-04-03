@@ -1,1 +1,0 @@
-# zipy-iossdk-release-test
