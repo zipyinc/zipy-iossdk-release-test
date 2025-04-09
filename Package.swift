@@ -10,7 +10,7 @@ let package = Package(
     products: [
         .library(
             name: "ZipyiOS",
-            targets: ["ZipyiOSMain"])
+            targets: ["ZipyiOSWrapper"])
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-protobuf.git", from: "1.25.0"),
@@ -18,16 +18,15 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "ZipyiOS",
-            url: "https://raw.githubusercontent.com/zipyinc/zipy-iossdk-release-test/0.0.13/ZipyiOS.xcframework.zip",
+            url: "https://raw.githubusercontent.com/zipyinc/zipy-iossdk-release-test/0.0.14/ZipyiOS.xcframework.zip",
             checksum: "a5a9824c13aa37fa4b048254a0bcdda10bb742ef856023a926829f6230317651"
         ),
         .target(
-            name: "ZipyiOSMain",
+            name: "ZipyiOSWrapper",
             dependencies: [
-                .target(name: "ZipyiOS"),
+                "ZipyiOS",
                 .product(name: "SwiftProtobuf", package: "swift-protobuf")
-            ],
-            path: "Sources/ZipyiOSMain"
+            ]
         )
     ]
 )
