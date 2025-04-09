@@ -1,2 +1,6 @@
-/ZipyiOS*
 .build
+# ignore the xcframework bundle
+/ZipyiOS.xcframework
+
+# but do NOT ignore the zip file
+!/ZipyiOS.xcframework.zip
