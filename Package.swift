@@ -18,8 +18,8 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "ZipyiOS",
-            url: "https://github.com/zipyinc/zipy-iossdk-release-test/releases/download/0.0.3/ZipyiOS.xcframework.zip",
-            checksum: "79333bec09dbfbd90d6281d29f19079071e8660e6910412a4c7ab2068a92a83f"
+            url: "https://github.com/zipyinc/zipy-iossdk-release-test/releases/download/0.0.4/ZipyiOS.xcframework.zip",
+            checksum: "a926ffe414233219a4acf73fb40dcf0e097bb4f343365d6bce2b4eaa7ba4b2c4"
         )
     ]
 )
