@@ -1,0 +1,662 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.10 (swiftlang-5.10.0.13 clang-1500.3.9.4)
+// swift-module-flags: -target x86_64-apple-ios17.5-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name ZipyiOS
+import Foundation
+import Swift
+import SwiftProtobuf
+import SystemConfiguration
+import UIKit
+@_exported import ZipyiOS
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public struct SdkVersion {
+  public static let SDK_VERSION: Swift.String
+}
+@_hasMissingDesignatedInitializers public class ContextualInfo {
+  public static func getContextualInfo() -> [Swift.String : Swift.String]
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class ZipyBackend {
+  public static func streamData(forceSend: Swift.Bool = false)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class Zipy {
+  public static var apiKey: Swift.String?
+  public static var sessionId: Swift.String
+  public static var streamURL: Swift.String
+  public static var uploadURL: Swift.String
+  public static var customerId: Swift.Int
+  public static var retryCount: Swift.Int
+  public static var fetchEndUserAttempt: Swift.Int
+  public static var createSessionAttempt: Swift.Int
+  public static var sdkInit: Swift.Bool
+  public static var sdkInitProgress: Swift.Bool
+  public static var profilerTimerSec: Swift.Int
+  public static var timer: Foundation.Timer?
+  public static var sdkInterval: Foundation.Timer?
+  public static var streamDataSec: Swift.Int
+  public static var identifyRetryCount: Swift.Int
+  public static func getConfigData() -> ZipyiOS.ConfigData?
+  public static func initialize(_ apiKey: Swift.String)
+  public static func logException(_ message: Swift.String)
+  public static func logException(_ message: Swift.String, exceptionObj: Any?)
+  public static func logException(_ message: Swift.String, exceptionObj: Any?, maxLength: Swift.Int)
+  public static func logMessage(_ message: Swift.String)
+  public static func logMessage(_ message: Swift.String, exceptionObj: Any?)
+  public static func logMessage(_ message: Swift.String, exceptionObj: Any?, maxLength: Swift.Int)
+  public static func logError(_ message: Swift.String)
+  public static func logError(_ message: Swift.String, exceptionObj: Any?)
+  public static func logError(_ message: Swift.String, exceptionObj: Any?, maxLength: Swift.Int)
+  public static func getCurrentSessionURL() -> Swift.String
+  public static func pause()
+  public static func resume()
+  public static func stop()
+  #if compiler(>=5.3) && $AsyncAwait
+  public static func identify(externalUUId: Swift.String, userInfo: [Swift.String : Any]) async
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  public static func anonymize() async
+  #endif
+  @objc deinit
+}
+public struct ApiResponse : Swift.Codable {
+  public let success: Swift.Bool
+  public let message: Swift.String
+  public let data: ZipyiOS.ConfigData
+  public init(success: Swift.Bool, message: Swift.String, data: ZipyiOS.ConfigData)
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ConfigData : Swift.Codable {
+  public let isBlocked: Swift.Bool
+  public let apiKey: Swift.String
+  public let customerId: Swift.Int
+  public let streamUrl: Swift.String
+  public let uploadUrl: Swift.String
+  public let captureEvents: Swift.Bool
+  public let captureCrashes: Swift.Bool
+  public let captureErrors: Swift.Bool
+  public let captureAnrs: Swift.Bool
+  public let bufferSizeFrequency: Swift.Int
+  public let ignoreUrl: Swift.String
+  public let sessionTimeout: Swift.Int
+  public let textMasking: Swift.Bool
+  public let lowBatteryThreshold: Swift.Int
+  public let oomThreshold: Swift.Int
+  public let enableLogging: Swift.Bool
+  public let maxRetryAttempts: Swift.Int
+  public let captureNetwork: Swift.Bool
+  public let captureScreenshots: Swift.Bool
+  public let captureProfiling: Swift.Bool
+  public let captureCustomLogs: Swift.Bool
+  public let captureGesture: Swift.Bool
+  public let screenshotsFrequency: Swift.Int
+  public let profilingFrequency: Swift.Int
+  public let capturePayload: Swift.Bool
+  public let captureResponse: Swift.Bool
+  public let maxPayloadSize: Swift.Int
+  public let maxResponseSize: Swift.Int
+  public let oopsieConsent: Swift.Bool?
+  public init(isBlocked: Swift.Bool, apiKey: Swift.String, customerId: Swift.Int, streamUrl: Swift.String, uploadUrl: Swift.String, captureEvents: Swift.Bool, captureCrashes: Swift.Bool, captureErrors: Swift.Bool, captureAnrs: Swift.Bool, bufferSizeFrequency: Swift.Int, ignoreUrl: Swift.String, sessionTimeout: Swift.Int, textMasking: Swift.Bool, lowBatteryThreshold: Swift.Int, oomThreshold: Swift.Int, enableLogging: Swift.Bool, maxRetryAttempts: Swift.Int, captureNetwork: Swift.Bool, captureScreenshots: Swift.Bool, captureProfiling: Swift.Bool, captureCustomLogs: Swift.Bool, captureGesture: Swift.Bool, screenshotsFrequency: Swift.Int, profilingFrequency: Swift.Int, capturePayload: Swift.Bool, captureResponse: Swift.Bool, maxPayloadSize: Swift.Int, maxResponseSize: Swift.Int, oopsieConsent: Swift.Bool?)
+  public static func defaultConfig() -> ZipyiOS.ConfigData
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class NavigationObserver : ObjectiveC.NSObject {
+  public static func startMonitoring()
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class EnvVariable {
+  public static var streamURL: Swift.String
+  public static var uploadURL: Swift.String
+  public static var appURL: Swift.String
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class Profiler {
+  public static func startProfiler()
+  public static func stopProfiler()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers public class NetworkInterceptor : ObjectiveC.NSObject, Foundation.URLSessionDataDelegate {
+  public struct NetworkEvent {
+  }
+  public static func isTextContent(_ headers: [Swift.String : Swift.String]) -> Swift.Bool
+  public static func shouldAddBody(_ size: Swift.Int, maxSize: Swift.Int) -> Swift.Bool
+  public static func createSizeError(_ size: Swift.Int) -> Swift.String
+  public static func enableInterceptor()
+  public static func disableInterceptor()
+  public static func formatHeaders(_ headers: [Swift.String : Swift.String]) -> Swift.String
+  public static func determineRequestType(url: Foundation.URL, headers: [Swift.String : Swift.String]) -> Swift.String
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class ZipyBlock : UIKit.UIView {
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @discardableResult
+  @_Concurrency.MainActor(unsafe) convenience public init(on view: UIKit.UIView)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class ScreenshotCapture {
+  public static func initialize(sessionId: Swift.String, screenshotIntervalMs: Swift.Int)
+  public static func captureAndSendScreenshot(sessionId: Swift.String)
+  public static func cleanup()
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class HelperVariable {
+  public static var zipyEvents: [ZipyiOS.Types_Event]
+  public static var zipyActiveEvents: [Any]
+  public static var timerDelay: Swift.Bool
+  public static var sessionStartTime: Swift.Int64
+  public static var lastActivityTime: Swift.Int64
+  public static var sessionLength: Swift.Int64
+  public static var sessionExpired: Swift.Bool
+  public static var appStateHide: Swift.Bool
+  public static var screenName: Swift.String
+  public static var screenshotCaptureAllow: Swift.Bool
+  @objc deinit
+}
+public enum Types_Category : SwiftProtobuf.Enum, Swift.CaseIterable {
+  public typealias RawValue = Swift.Int
+  case system
+  case screen
+  case uiinteraction
+  case errors
+  case customLogs
+  case network
+  case warning
+  case performance
+  case profiling
+  case UNRECOGNIZED(Swift.Int)
+  public init()
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+  public static let allCases: [ZipyiOS.Types_Category]
+  public typealias AllCases = [ZipyiOS.Types_Category]
+}
+public enum Types_SubCategory : SwiftProtobuf.Enum, Swift.CaseIterable {
+  public typealias RawValue = Swift.Int
+  case meta
+  case screenInteraction
+  case tapInteraction
+  case gesture
+  case hardkey
+  case softkey
+  case frontendError
+  case networkError
+  case anr
+  case crash
+  case logMessage
+  case logError
+  case logException
+  case apis
+  case resourceWarnings
+  case appPerformance
+  case deviceState
+  case deviceContext
+  case anrCrash
+  case UNRECOGNIZED(Swift.Int)
+  public init()
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+  public static let allCases: [ZipyiOS.Types_SubCategory]
+  public typealias AllCases = [ZipyiOS.Types_SubCategory]
+}
+public enum Types_EventType : SwiftProtobuf.Enum, Swift.CaseIterable {
+  public typealias RawValue = Swift.Int
+  case unspecified
+  case metaEvent
+  case screenShow
+  case screenHide
+  case screenKill
+  case screenRotate
+  case screenTransition
+  case singleTap
+  case doubleTap
+  case longTap
+  case swipeLeft
+  case swipeRight
+  case pinchIn
+  case pinchOut
+  case drag
+  case hardkeyVol
+  case hardkeyVolUp
+  case hardkeyVolDown
+  case hardkeyPowerPress
+  case hardkeyPowerLongPress
+  case hardkeyPowerOff
+  case softkeyHome
+  case softkeyBack
+  case softkeyRecent
+  case softkeyMenu
+  case typeError
+  case unhandledException
+  case syntaxError
+  case others
+  case uncaughtException
+  case appNotResponding
+  case appCrash
+  case userLogMessage
+  case userLogException
+  case userLogError
+  case xhrFetch
+  case ws
+  case img
+  case css
+  case media
+  case oomWarning
+  case lowBatteryWarning
+  case highCpuUsage
+  case highMemoryUsage
+  case profilingDeviceState
+  case profilingDeviceContext
+  case anrCrashEvent
+  case exception
+  case rangeError
+  case integerDivisionByZero
+  case pathNotFoundException
+  case formatException
+  case assertionError
+  case stackoverflowError
+  case concurrentModificationError
+  case outOfMemoryError
+  case referenceError
+  case uriError
+  case evalError
+  case unhandledRejection
+  case scrollUp
+  case scrollDown
+  case scrollLeft
+  case scrollRight
+  case UNRECOGNIZED(Swift.Int)
+  public init()
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+  public static let allCases: [ZipyiOS.Types_EventType]
+  public typealias AllCases = [ZipyiOS.Types_EventType]
+}
+public struct Types_MetaEvent : @unchecked Swift.Sendable {
+  public var enduserSessionID: Swift.String {
+    get
+    set
+  }
+  public var apiKey: Swift.String {
+    get
+    set
+  }
+  public var customerID: Swift.Int64 {
+    get
+    set
+  }
+  public var manufacturer: Swift.String {
+    get
+    set
+  }
+  public var model: Swift.String {
+    get
+    set
+  }
+  public var os: Swift.String {
+    get
+    set
+  }
+  public var osVersion: Swift.String {
+    get
+    set
+  }
+  public var architecture: Swift.String {
+    get
+    set
+  }
+  public var networkConnection: Swift.String {
+    get
+    set
+  }
+  public var framework: Swift.String {
+    get
+    set
+  }
+  public var appReleaseVersion: Swift.String {
+    get
+    set
+  }
+  public var sdkVersion: Swift.String {
+    get
+    set
+  }
+  public var screenWidth: Swift.Int32 {
+    get
+    set
+  }
+  public var screenHeight: Swift.Int32 {
+    get
+    set
+  }
+  public var sessionStartDate: Swift.String {
+    get
+    set
+  }
+  public var status: Swift.String {
+    get
+    set
+  }
+  public var sessionHandshakeTime: Swift.Int64 {
+    get
+    set
+  }
+  public var lastActivityTime: Swift.Int64 {
+    get
+    set
+  }
+  public var unknownFields: SwiftProtobuf.UnknownStorage
+  public init()
+}
+public struct Types_ScreenEvent : Swift.Sendable {
+  public var screenName: Swift.String
+  public var unknownFields: SwiftProtobuf.UnknownStorage
+  public init()
+}
+public struct Types_TapEvent : Swift.Sendable {
+  public var viewName: Swift.String
+  public var viewText: Swift.String
+  public var xCoordinate: Swift.Int32
+  public var yCoordinate: Swift.Int32
+  public var tappedon: Swift.String
+  public var componnentTree: Swift.String
+  public var unknownFields: SwiftProtobuf.UnknownStorage
+  public init()
+}
+public struct Types_ErrorEvent : Swift.Sendable {
+  public var unknownFields: SwiftProtobuf.UnknownStorage
+  public init()
+}
+public struct Types_CustomLogEventDetails : Swift.Sendable {
+  public var message: Swift.String
+  public var exceptionObj: SwiftProtobuf.Google_Protobuf_Struct {
+    get
+    set
+  }
+  public var hasExceptionObj: Swift.Bool {
+    get
+  }
+  public mutating func clearExceptionObj()
+  public var unknownFields: SwiftProtobuf.UnknownStorage
+  public init()
+}
+public struct Types_CustomLogEvent : Swift.Sendable {
+  public var logMessage: ZipyiOS.Types_CustomLogEventDetails {
+    get
+    set
+  }
+  public var hasLogMessage: Swift.Bool {
+    get
+  }
+  public mutating func clearLogMessage()
+  public var logError: ZipyiOS.Types_CustomLogEventDetails {
+    get
+    set
+  }
+  public var hasLogError: Swift.Bool {
+    get
+  }
+  public mutating func clearLogError()
+  public var logException: ZipyiOS.Types_CustomLogEventDetails {
+    get
+    set
+  }
+  public var hasLogException: Swift.Bool {
+    get
+  }
+  public mutating func clearLogException()
+  public var unknownFields: SwiftProtobuf.UnknownStorage
+  public init()
+}
+public struct Types_NetworkEvent : Swift.Sendable {
+  public var requestMethod: Swift.String
+  public var requestURL: Swift.String
+  public var requestType: Swift.String
+  public var requestHeader: Swift.String
+  public var responseCode: Swift.Int32
+  public var responseHeader: Swift.String
+  public var responseTime: Swift.String
+  public var responseSize: Swift.String
+  public var request: Swift.String
+  public var response: Swift.String
+  public var unknownFields: SwiftProtobuf.UnknownStorage
+  public init()
+}
+public struct Types_DeviceState : Swift.Sendable {
+  public var orientationChange: Swift.String
+  public var connectivityStatus: Swift.String
+  public var batteryStateChange: Swift.String
+  public var screenBrightnessChange: Swift.String
+  public var isCharging: Swift.String
+  public var unknownFields: SwiftProtobuf.UnknownStorage
+  public init()
+}
+public struct Types_DeviceContext : Swift.Sendable {
+  public var batteryLevel: Swift.String
+  public var totalMemory: Swift.String
+  public var usedMemoryDevice: Swift.String
+  public var usedMemoryApp: Swift.String
+  public var totalStorage: Swift.String
+  public var usedStorage: Swift.String
+  public var unknownFields: SwiftProtobuf.UnknownStorage
+  public init()
+}
+public struct Types_EventData : Swift.Sendable {
+  public var data: SwiftProtobuf.Google_Protobuf_Struct {
+    get
+    set
+  }
+  public var hasData: Swift.Bool {
+    get
+  }
+  public mutating func clearData()
+  public var unknownFields: SwiftProtobuf.UnknownStorage
+  public init()
+}
+public struct Types_Event : Swift.Sendable {
+  public var category: Swift.String
+  public var subCategory: Swift.String
+  public var eventType: ZipyiOS.Types_EventType
+  public var eventData: ZipyiOS.Types_EventData {
+    get
+    set
+  }
+  public var hasEventData: Swift.Bool {
+    get
+  }
+  public mutating func clearEventData()
+  public var timestamp: Swift.Int64
+  public var unknownFields: SwiftProtobuf.UnknownStorage
+  public init()
+}
+public struct Types_CapturedEvents : Swift.Sendable {
+  public var events: [ZipyiOS.Types_Event]
+  public var apiKey: Swift.String
+  public var cID: Swift.Int32
+  public var startTime: Swift.Int64
+  public var sessionID: Swift.String
+  public var unknownFields: SwiftProtobuf.UnknownStorage
+  public init()
+}
+extension ZipyiOS.Types_Category : SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap
+}
+extension ZipyiOS.Types_SubCategory : SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap
+}
+extension ZipyiOS.Types_EventType : SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap
+}
+extension ZipyiOS.Types_MetaEvent : SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : SwiftProtobuf.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : SwiftProtobuf.Visitor
+  public static func == (lhs: ZipyiOS.Types_MetaEvent, rhs: ZipyiOS.Types_MetaEvent) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension ZipyiOS.Types_ScreenEvent : SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : SwiftProtobuf.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : SwiftProtobuf.Visitor
+  public static func == (lhs: ZipyiOS.Types_ScreenEvent, rhs: ZipyiOS.Types_ScreenEvent) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension ZipyiOS.Types_TapEvent : SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : SwiftProtobuf.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : SwiftProtobuf.Visitor
+  public static func == (lhs: ZipyiOS.Types_TapEvent, rhs: ZipyiOS.Types_TapEvent) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension ZipyiOS.Types_ErrorEvent : SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : SwiftProtobuf.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : SwiftProtobuf.Visitor
+  public static func == (lhs: ZipyiOS.Types_ErrorEvent, rhs: ZipyiOS.Types_ErrorEvent) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension ZipyiOS.Types_CustomLogEventDetails : SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : SwiftProtobuf.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : SwiftProtobuf.Visitor
+  public static func == (lhs: ZipyiOS.Types_CustomLogEventDetails, rhs: ZipyiOS.Types_CustomLogEventDetails) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension ZipyiOS.Types_CustomLogEvent : SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : SwiftProtobuf.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : SwiftProtobuf.Visitor
+  public static func == (lhs: ZipyiOS.Types_CustomLogEvent, rhs: ZipyiOS.Types_CustomLogEvent) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension ZipyiOS.Types_NetworkEvent : SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : SwiftProtobuf.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : SwiftProtobuf.Visitor
+  public static func == (lhs: ZipyiOS.Types_NetworkEvent, rhs: ZipyiOS.Types_NetworkEvent) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension ZipyiOS.Types_DeviceState : SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : SwiftProtobuf.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : SwiftProtobuf.Visitor
+  public static func == (lhs: ZipyiOS.Types_DeviceState, rhs: ZipyiOS.Types_DeviceState) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension ZipyiOS.Types_DeviceContext : SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : SwiftProtobuf.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : SwiftProtobuf.Visitor
+  public static func == (lhs: ZipyiOS.Types_DeviceContext, rhs: ZipyiOS.Types_DeviceContext) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension ZipyiOS.Types_EventData : SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : SwiftProtobuf.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : SwiftProtobuf.Visitor
+  public static func == (lhs: ZipyiOS.Types_EventData, rhs: ZipyiOS.Types_EventData) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension ZipyiOS.Types_Event : SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : SwiftProtobuf.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : SwiftProtobuf.Visitor
+  public static func == (lhs: ZipyiOS.Types_Event, rhs: ZipyiOS.Types_Event) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension ZipyiOS.Types_CapturedEvents : SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: Swift.String
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap
+  public mutating func decodeMessage<D>(decoder: inout D) throws where D : SwiftProtobuf.Decoder
+  public func traverse<V>(visitor: inout V) throws where V : SwiftProtobuf.Visitor
+  public static func == (lhs: ZipyiOS.Types_CapturedEvents, rhs: ZipyiOS.Types_CapturedEvents) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class SDKState {
+  public static var sdkCaptureEventState: Swift.Bool
+  public static func pause()
+  public static func resume()
+  public static func stop()
+  public static func stopCaptureEventState()
+  public static func resumeCaptureEventState()
+  public static func clearBufferEvents()
+  public static func clearActiveIntervals()
+  public static func logState(message: Swift.String)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class MetaEvent {
+  #if compiler(>=5.3) && $AsyncAwait
+  public static func getMetaEvent(_ status: Swift.String? = "Inactive") async -> [Swift.String : Any]?
+  #endif
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class Utils {
+  public static func validateKey(_ apiKey: Swift.String) -> Swift.Bool
+  public static func generateSessionId() -> Swift.String
+  public static func convertToValue(_ obj: Any?) -> Any
+  public static func generateEvent(category: Swift.String, subCategory: Swift.String, eventType: ZipyiOS.Types_EventType, eventData: [Swift.String : Any])
+  public static func generateCapturedEventObj(events: [ZipyiOS.Types_Event]) -> ZipyiOS.Types_CapturedEvents
+  public static func formatMessage(_ message: Swift.String?, maxLength: Swift.Int) -> Swift.String
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class ZipyCrashLogHandler {
+  public static var shared: ZipyiOS.ZipyCrashLogHandler?
+  public static func setupExceptionHandler(apiKey: Swift.String, customerId: Swift.Int, sessionId: Swift.String, streamURL: Swift.String)
+  public static func resetExceptionHandler()
+  public static func stopCrashMonitoring()
+  public static func checkAndSendCrashReports()
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class AppState {
+  public static func startMonitoring()
+  public static func stopMonitoring()
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class DeviceInfo {
+  public static func getDeviceInfo() -> [Swift.String : Any]
+  @objc deinit
+}

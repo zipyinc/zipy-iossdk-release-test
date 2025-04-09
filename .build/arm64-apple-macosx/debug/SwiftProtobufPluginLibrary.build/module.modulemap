@@ -1,0 +1,4 @@
+module SwiftProtobufPluginLibrary {
+    header "/Users/sandesh/zipy-iossdk-release-test/.build/arm64-apple-macosx/debug/SwiftProtobufPluginLibrary.build/SwiftProtobufPluginLibrary-Swift.h"
+    requires objc
+}
