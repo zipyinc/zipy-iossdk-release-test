@@ -1,6 +1,0 @@
-framework module ZipyiOS {
-  umbrella header "ZipyiOS.h"
-  export *
-
-  module * { export * }
-}
