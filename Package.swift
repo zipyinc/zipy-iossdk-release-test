@@ -10,18 +10,19 @@ let package = Package(
     products: [
         .library(
             name: "ZipyiOS",
-            targets: ["ZipyiOS"])
+            targets: ["ZipyiOSMain"])
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-protobuf.git", from: "1.25.0"),
     ],
     targets: [
         .target(
-            name: "ZipyiOSWrapper",
+            name: "ZipyiOSMain",
             dependencies: [
                 .product(name: "SwiftProtobuf", package: "swift-protobuf"),
                 "ZipyiOS"
-            ]
+            ],
+            path: "Sources/ZipyiOSMain"
         ),
         .binaryTarget(
             name: "ZipyiOS",
