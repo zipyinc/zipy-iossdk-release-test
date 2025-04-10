@@ -307,24 +307,7 @@ class PaymentViewController: UIViewController {
 
 2. **User Identification**
    - Identify users after successful authentication
-   - Include relevant user information
    - Anonymize when user logs out
-
-3. **Logging**
-   - Use appropriate log levels
-   - Include relevant context
-   - Don't log sensitive information
-   - Keep log messages concise
-
-4. **Session Management**
-   - Handle session URLs securely
-   - Store session IDs if needed for reference
-   - Monitor session timeouts
-
-5. **Privacy**
-   - Use pause/resume around sensitive operations
-   - Don't log personal identifiable information (PII)
-   - Follow data protection regulations
 
 
 ## Support
