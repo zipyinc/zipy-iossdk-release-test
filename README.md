@@ -8,7 +8,7 @@
 Zipy SDK for iOS
 ===========
 
-# ZipyiOS SDK Guide
+## ZipyiOS SDK Guide
 
 This guide explains how to implement and use the main features of the ZipyiOS SDK in your iOS application.
 
