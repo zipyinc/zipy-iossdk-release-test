@@ -341,36 +341,7 @@ class ProfileViewController: UIViewController {
 }
 ```
 
-### Best Practices
-
-1. **Consistent Naming**: Use consistent screen names across your app for better analytics
-   ```swift
-   // Good
-   Zipy.tagScreenName("ProductDetails")
-   
-   // Avoid
-   Zipy.tagScreenName("product_details_screen_1")
-   ```
-
-2. **Meaningful Names**: Use descriptive names that reflect the screen's purpose
-   ```swift
-   // Good
-   Zipy.tagScreenName("CheckoutPaymentMethod")
-   
-   // Avoid
-   Zipy.tagScreenName("Screen3")
-   ```
-
-3. **Timing**: Tag screens early in the view lifecycle
-   ```swift
-   override func viewDidAppear(_ animated: Bool) {
-       super.viewDidAppear(animated)
-       Zipy.tagScreenName("UserProfile")
-       // Other view setup code
-   }
-   ```
-
-4. **Handle Dynamic Content**: Update screen names for dynamic content
+### Handle Dynamic Content: Update screen names for dynamic content
    ```swift
    func showProductDetails(product: Product) {
        Zipy.tagScreenName("ProductDetails-\(product.category)")
