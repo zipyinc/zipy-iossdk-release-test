@@ -25,23 +25,24 @@ This guide explains how to implement and use the main features of the ZipyiOS SD
 
 ### Swift Package Manager
 
-#### Option 1: Package.swift
-Add the following dependency to your `Package.swift`:
-```swift
-dependencies: [
-    .package(url: "https://github.com/zipyinc/zipy-ios.git", from: "1.0.0")
-]
-```
-
-#### Option 2: Xcode GUI
+#### Option 1: Xcode GUI (Recommended)
 1. Open your project in Xcode
 2. Select File > Add Package Dependencies...
-3. In the search field, enter: `https://github.com/zipyinc/zipy-ios.git`
+3. In the search field, enter: `https://github.com/zipyinc/zipy-ios-sdk.git`
 4. Select the version you want to use
 5. Click "Add Package"
 6. Select your target and click "Add Package" again
 
-> **Note:** Swift Protobuf will be automatically installed as a dependency when you add the zipy-ios package.
+#### Option 2: Package.swift
+Add the following dependency to your `Package.swift`:
+```swift
+dependencies: [
+    .package(url: "https://github.com/zipyinc/zipy-ios-sdk.git", from: "1.0.0")
+]
+```
+
+
+> **Note:** Swift Protobuf will be automatically installed as a dependency when you add the ZipyiOS package.
 
 ## Initialization
 
@@ -81,8 +82,7 @@ Use the `identify` method to associate a user with the session. You can include 
 import ZipyiOS
 
 // Basic user identification
-Task {
-    await Zipy.identify(
+Zipy.identify(
         externalUUId: "user123",
         userInfo: [
             "email": "user@example.com",
@@ -91,11 +91,9 @@ Task {
             "customerName": "ACME Corp"
         ]
     )
-}
 
-// With custom fields (up to 10 additional fields)
-Task {
-    await Zipy.identify(
+// With custom fields (up to 10 additional fields) Contact support@zipy.ai to use this
+Zipy.identify(
         externalUUId: "user123",
         userInfo: [
             "email": "user@example.com",
@@ -107,16 +105,13 @@ Task {
             "country": "US"
         ]
     )
-}
 ```
 
 ### Anonymize User
 To anonymize or disassociate a previously identified user of your application from the session, use the following code in a source file where the user signs out of your application:
 
 ```swift
-Task {
-    await Zipy.anonymize()
-}
+Zipy.anonymize()
 ```
 
 > **Note:** We recommend calling `Zipy.anonymize()` when the user logs out. This ends the current identified session and starts a fresh, anonymous session, ensuring that subsequent activity isn't mistakenly linked to the previous user.
