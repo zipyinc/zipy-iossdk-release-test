@@ -20,6 +20,7 @@ This guide explains how to implement and use the main features of the ZipyiOS SD
 - [Session Management](#session-management)
 - [Session Control](#session-control)
 - [UI Custom Masking](#ui-element-masking)
+- [Screen Tracking](#screen-tracking)
 
 ## Installation
 
@@ -294,16 +295,87 @@ class PaymentViewController: UIViewController {
 }
 ```
 
-## Best Practices
+## Screen Tracking
 
-1. **Initialization**
-   - Initialize the SDK as early as possible
-   - Ensure API key is valid
+Zipy automatically captures screen transitions and view controller names without any additional configuration. This automatic tracking provides:
 
-2. **User Identification**
-   - Identify users after successful authentication
-   - Anonymize when user logs out
+- Built-in screen transition capturing for all view controllers
+- Intelligent handling of navigation hierarchies
+- Screenshot capture on screen transitions (if enabled)
 
+### Automatic Screen Tracking
+
+The SDK automatically tracks screen transitions with some important behaviors to note:
+
+- View controllers are tracked automatically with their class names
+- View controllers starting with `UI`, `_UI`, `PU` or `WK` are ignored to prevent system-level tracking
+- No additional code is required for basic screen tracking
+
+### Manual Screen Tagging
+
+While automatic tracking works for most cases, you can implement manual screen tagging when you need to:
+- Override the default screen name
+- Track custom views, popups, or tab changes
+- Add tracking to views that aren't traditional view controllers
+
+```swift
+import ZipyiOS
+
+class ProfileViewController: UIViewController {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        Zipy.tagScreenName("UserProfile")
+    }
+    
+    func showCustomPopup() {
+        // Tag custom popup view
+        Zipy.tagScreenName("ProfileSettings-Popup")
+        // Show popup logic
+    }
+    
+    func onTabChanged(index: Int) {
+        // Tag different tabs
+        let tabName = ["Overview", "Details", "Settings"][index]
+        Zipy.tagScreenName("Profile-\(tabName)Tab")
+    }
+}
+```
+
+### Best Practices
+
+1. **Consistent Naming**: Use consistent screen names across your app for better analytics
+   ```swift
+   // Good
+   Zipy.tagScreenName("ProductDetails")
+   
+   // Avoid
+   Zipy.tagScreenName("product_details_screen_1")
+   ```
+
+2. **Meaningful Names**: Use descriptive names that reflect the screen's purpose
+   ```swift
+   // Good
+   Zipy.tagScreenName("CheckoutPaymentMethod")
+   
+   // Avoid
+   Zipy.tagScreenName("Screen3")
+   ```
+
+3. **Timing**: Tag screens early in the view lifecycle
+   ```swift
+   override func viewDidAppear(_ animated: Bool) {
+       super.viewDidAppear(animated)
+       Zipy.tagScreenName("UserProfile")
+       // Other view setup code
+   }
+   ```
+
+4. **Handle Dynamic Content**: Update screen names for dynamic content
+   ```swift
+   func showProductDetails(product: Product) {
+       Zipy.tagScreenName("ProductDetails-\(product.category)")
+   }
+   ```
 
 ## Support
 
