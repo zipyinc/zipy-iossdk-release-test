@@ -30,9 +30,6 @@ let package = Package(
             name: packageName,
             targets: [mainTargetName])
     ],
-    dependencies: [
-        .package(url: swiftProtobufPackage, from: Version(stringLiteral: swiftProtobufVersion)),
-    ],
     targets: [
         .target(
             name: mainTargetName,
