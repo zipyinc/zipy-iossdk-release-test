@@ -28,6 +28,7 @@ let package = Package(
     products: [
         .library(
             name: packageName,
+            type: .static,  // Changed to static to avoid duplicate symbols
             targets: [mainTargetName])
     ],
     dependencies: [
@@ -40,7 +41,10 @@ let package = Package(
                 .product(name: "SwiftProtobuf", package: "swift-protobuf"),
                 .target(name: binaryTargetName)
             ],
-            path: "Sources/\(mainTargetName)"
+            path: "Sources/\(mainTargetName)",
+            swiftSettings: [
+                .define("SWIFT_PACKAGE")
+            ]
         ),
         .binaryTarget(
             name: binaryTargetName,
