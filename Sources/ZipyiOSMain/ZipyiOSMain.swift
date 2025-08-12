@@ -1,4 +1,5 @@
 import Foundation
+@implementationonly import SwiftProtobuf  // Make SwiftProtobuf internal only
 @_exported import ZipyiOS
 
 // This is the main entry point that ensures proper linking of all dependencies
