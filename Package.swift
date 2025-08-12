@@ -8,7 +8,7 @@ let repositoryName = "zipy-iossdk-release-test"
 
 // Package configuration
 let packageName = "ZipyiOS"
-let zipySDKVersion = "17.0.10"
+let zipySDKVersion = "18.0.0"
 
 // Dependencies configuration
 let swiftProtobufVersion = "1.30.0"
@@ -18,7 +18,7 @@ let swiftProtobufPackage = "https://github.com/apple/swift-protobuf.git"
 let binaryTargetName = "ZipyiOS"
 let mainTargetName = "ZipyiOSMain"
 let binaryURL = "https://raw.githubusercontent.com/\(organizationName)/\(repositoryName)/\(zipySDKVersion)/ZipyiOS.xcframework.zip"
-let binaryChecksum = "d131783fde397ea2b4b08a2e41352746db07b0f9a9ac025894d464cae94bbe73"
+let binaryChecksum = "444b27cad5bfff4838abb5b48c440bcfa23bdc0b0a49c39a1c1b37b1ab48cb49"
 
 let package = Package(
     name: packageName,
