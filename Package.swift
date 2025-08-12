@@ -18,7 +18,7 @@ let swiftProtobufPackage = "https://github.com/apple/swift-protobuf.git"
 let binaryTargetName = "ZipyiOS"
 let mainTargetName = "ZipyiOSMain"
 let binaryURL = "https://raw.githubusercontent.com/\(organizationName)/\(repositoryName)/\(zipySDKVersion)/ZipyiOS.xcframework.zip"
-let binaryChecksum = "cf2c0f035634fe7601147f40f3c0c2145f600acff5b30f2f286bdc27b8df415f"
+let binaryChecksum = "226c5b3d4bc0d90bbc41298f2fd8b0cbdfedbd2e8e98acb83066802edcfee741"
 
 let package = Package(
     name: packageName,
